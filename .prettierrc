@@ -15,5 +15,15 @@
 	"singleAttributePerLine": false,
 	"vueIndentScriptAndStyle": false,
 	"htmlWhitespaceSensitivity": "css",
-	"embeddedLanguageFormatting": "auto"
+	"embeddedLanguageFormatting": "auto",
+	"overrides": [
+		{
+			"files": ["*.yml"],
+			"options": {
+				"tabWidth": 4,
+				"useTabs": false,
+				"singleQuote": true
+			}
+		}
+	]
 }
