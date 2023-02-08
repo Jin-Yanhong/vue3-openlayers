@@ -1,18 +1,45 @@
 <template>
 	<div class="home">
-		<img alt="Vue logo" src="../assets/logo.png" />
-		<HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+		<button @click="toggleDark()">Is Dark: {{ isDark }}</button>
 	</div>
 </template>
 
 <script lang="ts">
+import { useDark, useToggle } from "@vueuse/core";
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 export default defineComponent({
 	name: "HomeView",
-	components: {
-		HelloWorld,
+	components: {},
+	setup() {
+		const isDark = useDark({
+			selector: "html",
+			attribute: "prefers-color-scheme",
+			valueDark: "dark",
+			valueLight: "light",
+		});
+
+		const toggleDark = useToggle(isDark);
+		return {
+			isDark,
+			toggleDark,
+		};
+	},
+
+	mounted() {
+		let _this = this;
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", event => {
+				_this.isDark = event.matches;
+			});
+	},
+	beforeUnmount() {
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.removeEventListener("change", () => {
+				return;
+			});
 	},
 });
 </script>

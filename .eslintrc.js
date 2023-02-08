@@ -16,6 +16,8 @@ module.exports = {
 		"no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"prettier/prettier": [2, { useTabs: true }],
+		"no-this-alias": "off",
+		"@typescript-eslint/no-this-alias": "off",
 	},
 	overrides: [
 		{
