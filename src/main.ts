@@ -1,7 +1,15 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import './registerServiceWorker';
-import router from './router';
-import store from './store';
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
+import router from "./router";
+import "./registerServiceWorker";
+import "normalize.css";
 
-createApp(App).use(store).use(router).mount('#app');
+const pinia = createPinia();
+const app = createApp(App);
+
+app.config.globalProperties.foo = "foo";
+
+app.use(pinia);
+app.use(router);
+app.mount("#app");
