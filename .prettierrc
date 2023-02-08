@@ -2,7 +2,7 @@
 	"semi": true,
 	"tabWidth": 2,
 	"useTabs": true,
-	"printWidth": 360,
+	"printWidth": 80,
 	"endOfLine": "lf",
 	"proseWrap": "always",
 	"singleQuote": false,
