@@ -1,22 +1,51 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import NProgress from "nprogress";
+import {
+  createRouter,
+  createWebHashHistory,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+} from "vue-router";
+
 import HomeView from "../views/HomeView.vue";
 
-const routes: Array<RouteRecordRaw> = [
-	{
-		path: "/",
-		name: "home",
-		component: HomeView,
-	},
-	{
-		path: "/about",
-		name: "about",
-		component: () => import("../views/AboutView.vue"),
-	},
+import "nprogress/nprogress.css";
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "HomeView",
+    component: HomeView,
+    meta: {
+      title: "主页",
+    },
+  },
+  {
+    path: "/about",
+    name: "AboutView",
+    component: () => import("@/views/AboutView.vue"),
+    meta: {
+      title: "关于",
+    },
+  },
+  // 匹配不到页面返回 Home 页
+  {
+    path: "/:pathMatch(.*)*",
+    name: "redirect",
+    redirect: "/",
+    meta: {
+      show: false,
+    },
+  },
 ];
 
 const router = createRouter({
-	history: createWebHashHistory(process.env.BASE_URL),
-	routes,
+  history: createWebHashHistory(process.env.BASE_URL),
+  linkActiveClass: "activeLink",
+  routes,
 });
 
+router.afterEach((to: RouteLocationNormalized) => {
+  NProgress.done();
+  document.title = "vue3-openlayers" + " | " + to.meta?.title;
+});
 export default router;

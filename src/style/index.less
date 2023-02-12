@@ -1,18 +1,30 @@
 :root {
-	color-scheme: light dark;
+  color-scheme: light dark;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  background-color: #04041b;
+}
+.activeLink {
+  color: #dfe6e9 !important;
 }
 
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
-	body {
-		background: #333;
-		color: white;
-	}
+  body {
+    background: #2d3436;
+    color: #dfe6e9;
+  }
 }
 /* 浅色模式 */
 @media (prefers-color-scheme: light) {
-	body {
-		background: white;
-		color: #333;
-	}
+  body {
+    background: #dfe6e9;
+    color: #2d3436;
+  }
 }

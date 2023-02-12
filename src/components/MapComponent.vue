@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <div ref="mapContainer" class="mapContainer"></div>
-  </div>
+  <div ref="mapContainer" class="mapContainer"></div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -20,6 +18,7 @@ export default defineComponent({
     };
   },
   name: "mapComponent",
+
   methods: {
     mapInit() {
       const mapContainer = this.$refs.mapContainer as HTMLDivElement;
@@ -38,6 +37,7 @@ export default defineComponent({
           zoom: 2,
         }),
       });
+      this.$emit("mapReady", this.mapIns);
     },
   },
   mounted() {
@@ -48,6 +48,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .mapContainer {
   width: 100%;
-  height: calc(100vh - 40px);
+  height: 100vh;
 }
 </style>
