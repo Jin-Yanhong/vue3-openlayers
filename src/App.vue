@@ -6,8 +6,8 @@
       v-for="nav in navList"
       :to="nav.path"
       :key="nav.path"
-      >{{ nav.text }}</router-link
-    >
+      >{{ nav.text }}
+    </router-link>
   </nav>
   <router-view />
 </template>
