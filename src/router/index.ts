@@ -27,7 +27,6 @@ export const routes: Array<RouteRecordRaw> = [
       title: "关于",
     },
   },
-  // 匹配不到页面返回 Home 页
   {
     path: "/:pathMatch(.*)*",
     name: "redirect",
@@ -42,6 +41,10 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   linkActiveClass: "activeLink",
   routes,
+});
+
+router.beforeEach(() => {
+  NProgress.start();
 });
 
 router.afterEach((to: RouteLocationNormalized) => {

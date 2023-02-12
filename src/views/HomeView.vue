@@ -29,7 +29,10 @@ export default defineComponent({
           new VectorLayer({
             source: new VectorSource({
               format: new GeoJSON(),
-              url: "../assets/countries.json",
+              url:
+                process.env.NODE_ENV === "production"
+                  ? "/vue3-openlayers/assets/countries.json"
+                  : "../assets/countries.json",
             }),
           }),
         ],
@@ -42,6 +45,7 @@ export default defineComponent({
   },
   mounted() {
     this.mapInit();
+    console.log(process.env.NODE_ENV === "production");
   },
 });
 </script>
