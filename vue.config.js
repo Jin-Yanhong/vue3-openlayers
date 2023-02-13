@@ -1,6 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-	publicPath: process.env.NODE_ENV === "production" ? "/vue3-openlayers" : "/",
+	publicPath:
+		process.env.NODE_ENV === "production" ? "/vue3-openlayers" : "/",
 	lintOnSave: process.env.NODE_ENV === "development",
 	transpileDependencies: true,
 	productionSourceMap: false,

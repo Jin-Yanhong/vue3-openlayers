@@ -1,57 +1,37 @@
 <template>
-  <div class="home">
-    <div ref="mapContainer" class="mapContainer"></div>
-  </div>
+	<div class="home">
+		<MapComponent :params="{ a: 1, b: 2 }" @mapReady="mapReady" />
+	</div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import GeoJSON from "ol/format/GeoJSON";
 import Map from "ol/Map";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-import View from "ol/View";
-import "ol/ol.css";
-
+import ZoomSlider from "ol/control/ZoomSlider.js";
+import ZoomToExtent from "ol/control/ZoomToExtent.js";
+import MapComponent from "@/components/MapComponent.vue";
 export default defineComponent({
-  setup() {
-    let mapIns: any = {};
-    return {
-      mapIns,
-    };
-  },
-  name: "mapComponent",
-  methods: {
-    mapInit() {
-      const mapContainer = this.$refs.mapContainer as HTMLDivElement;
-      this.mapIns = new Map({
-        target: mapContainer,
-        layers: [
-          new VectorLayer({
-            source: new VectorSource({
-              format: new GeoJSON(),
-              url:
-                process.env.NODE_ENV === "production"
-                  ? "/vue3-openlayers/assets/countries.json"
-                  : "../assets/countries.json",
-            }),
-          }),
-        ],
-        view: new View({
-          center: [0, 0],
-          zoom: 2,
-        }),
-      });
-    },
-  },
-  mounted() {
-    this.mapInit();
-    console.log(process.env.NODE_ENV === "production");
-  },
+	setup() {
+		let mapIns: any = {};
+		return {
+			mapIns,
+		};
+	},
+	components: {
+		MapComponent,
+	},
+	name: "HomeView",
+	methods: {
+		mapReady(ins: Map) {
+			this.mapIns = ins;
+			this.mapIns.addControl(new ZoomSlider());
+		},
+	},
+	mounted() {},
 });
 </script>
 <style lang="less" scoped>
 .mapContainer {
-  width: 100%;
-  height: calc(100vh - 40px);
+	width: 100%;
+	height: calc(100vh - 40px);
 }
 </style>

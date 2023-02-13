@@ -6,9 +6,9 @@ root = true
 # 设置字符集
 charset = utf-8
 # 缩进风格，可选space、tab
-indent_style = space
+indent_style = tab
 # 缩进的空格数
-indent_size = 2
+indent_size = 4
 # 结尾换行符，可选lf、cr、crlf
 end_of_line = lf
 # 在文件结尾插入新行
